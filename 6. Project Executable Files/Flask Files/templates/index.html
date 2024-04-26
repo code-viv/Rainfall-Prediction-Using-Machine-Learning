@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rainfall Prediction</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+  body {
+    background-color: #f9f9f9;
+    padding-top: 50px;
+	background: url("static/grass.jpg") no-repeat center center fixed;
+  }
+  #prediction-form {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #B1EAE4; 
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  #prediction-form h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+
+<section id="prediction-form">
+    <form class="form" action="/pred" method="POST">
+        <h1 class="my-3 text-center">Rainfall Predictor</h1>
+        <div class="row">
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" class="form-control" id="date" name="date" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="location">Location</label>
+					<select class="form-control" id="location" name="location" required="required">
+						<option disabled selected>Select Location</option>
+						<option value= 0>Adelaide</option>
+                        <option value= 1>Albany</option>
+						<option value= 2>Albury</option>
+						<option value= 3>AliceSprings</option>
+                        <option value= 4>BadgerysCreek</option>
+                        <option value= 5>Ballarat</option>
+                        <option value= 6>Bendigo</option>
+                        <option value= 7>Brisbane</option>
+                        <option value= 8>Cairns</option>
+                        <option value= 9>Canberra</option>
+                        <option value= 10>Cobar</option>                        
+                        <option value= 11>CoffsHarbour</option>
+                        <option value= 12>Dartmoor</option>
+                        <option value= 13>Darwin</option>
+                        <option value= 14>GoldCoast</option>
+                        <option value= 15>Hobart</option>
+                        <option value= 16>Katherine</option>
+                        <option value= 17>Launceston</option>
+                        <option value= 18>Melbourne</option>
+                        <option value= 19>Melbourne Airport</option>
+                        <option value= 20>Mildura</option>
+                        <option value= 21>Moree</option>
+                        <option value= 22>MountGambier</option>
+                        <option value= 23>MountGinini</option>
+                        <option value= 24>Newcastle	</option>
+                        <option value= 25>Nhil</option>
+                        <option value= 26>NorahHead</option>
+                        <option value= 27>NorfolkIsland</option>
+                        <option value= 28>Nuriootpa</option>
+                        <option value= 29>PearceRAAF</option>
+                        <option value= 30>Penrith</option>
+                        <option value= 31>Perth</option>
+                        <option value= 32>Perth Airport</option>
+                        <option value= 33>Portland</option>
+                        <option value= 34>Richmond</option>
+                        <option value= 35>Sale</option>
+                        <option value= 36>Salmon Gums</option>
+                        <option value= 37>Sydney</option>
+                        <option value= 38>Sydney Airport</option>
+                        <option value= 39>Townsville</option>
+                        <option value= 40>Tuggeranong</option>
+                        <option value= 41>Uluru</option>
+                        <option value= 42>WaggaWagga</option>
+                        <option value= 43>Walpole</option>
+                        <option value= 44>Watsonia</option>
+                        <option value= 45>William Town</option>
+                        <option value= 46>Witchcliffe</option>
+                        <option value= 47>Wollongong</option>
+                        <option value= 48>Woomera</option>
+						<!-- Add more options as needed -->
+        </select>
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="mintemp">Minimum Temperature (°C)</label>
+                    <input type="number" step="0.1" class="form-control" id="mintemp" name="mintemp" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="maxtemp">Maximum Temperature (°C)</label>
+                    <input type="number" step="0.1" class="form-control" id="maxtemp" name="maxtemp" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="rainfall">Rainfall (mm)</label>
+                    <input type="number" step="0.1" class="form-control" id="rainfall" name="rainfall" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="evaporation">Evaporation (mm)</label>
+                    <input type="number" step="0.1" class="form-control" id="evaporation" name="evaporation" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="windgustdir">Wind Gust Direction</label>
+                    <select class="form-control" id="windgustdir" name="windgustdir" required="required">
+						<option disabled selected>Select Direction</option>
+				        <option value= 3>N</option>
+                        <option value= 13>W</option>
+                        <option value= 8>S</option>
+                        <option value= 0>E</option>
+                        <option value= 7>NW</option>
+                        <option value= 4>NE</option>
+                        <option value= 12>SW</option>
+                        <option value= 9>SE</option>
+                        <option value= 6>NNW</option>
+                        <option value= 5>NNE</option>
+                        <option value= 11>SSW</option>
+                        <option value= 10>SSE</option>
+                        <option value= 14>WNW</option>
+                        <option value= 15>WSW</option>
+                        <option value= 1>ENE</option>
+                        <option value= 2>ESE</option>
+					</select>	
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="windgustspeed">Wind Gust Speed (km/h)</label>
+                    <input type="number" class="form-control" id="windgustspeed" name="windgustspeed" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="winddir9am">Wind Direction 9am</label>
+                    <select class="form-control" id="winddir9am" name="winddir9am" required="required">
+						<option disabled selected>Select Direction</option>
+				        <option value= 3>N</option>
+                        <option value= 13>W</option>
+                        <option value= 8>S</option>
+                        <option value= 0>E</option>
+                        <option value= 7>NW</option>
+                        <option value= 4>NE</option>
+                        <option value= 12>SW</option>
+                        <option value= 9>SE</option>
+                        <option value= 6>NNW</option>
+                        <option value= 5>NNE</option>
+                        <option value= 11>SSW</option>
+                        <option value= 10>SSE</option>
+                        <option value= 14>WNW</option>
+                        <option value= 15>WSW</option>
+                        <option value= 1>ENE</option>
+                        <option value= 2>ESE</option>
+					</select>
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="winddir3pm">Wind Direction 3pm</label>
+                    <select class="form-control" id="winddir3pm" name="winddir3pm" required="required">
+						<option disabled selected>Select Direction</option>
+				        <option value= 3>N</option>
+                        <option value= 13>W</option>
+                        <option value= 8>S</option>
+                        <option value= 0>E</option>
+                        <option value= 7>NW</option>
+                        <option value= 4>NE</option>
+                        <option value= 12>SW</option>
+                        <option value= 9>SE</option>
+                        <option value= 6>NNW</option>
+                        <option value= 5>NNE</option>
+                        <option value= 11>SSW</option>
+                        <option value= 10>SSE</option>
+                        <option value= 14>WNW</option>
+                        <option value= 15>WSW</option>
+                        <option value= 1>ENE</option>
+                        <option value= 2>ESE</option>
+					</select>
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="windspeed9am">Wind Speed 9am (km/h)</label>
+                    <input type="number" class="form-control" id="windspeed9am" name="windspeed9am" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="windspeed3pm">Wind Speed 3pm (km/h)</label>
+                    <input type="number" class="form-control" id="windspeed3pm" name="windspeed3pm" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="humidity9am">Humidity 9am (%)</label>
+                    <input type="number" class="form-control" id="humidity9am" name="humidity9am" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="humidity3pm">Humidity 3pm (%)</label>
+                    <input type="number" class="form-control" id="humidity3pm" name="humidity3pm" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="pressure9am">Pressure 9am (Hectopascal - hPa)</label>
+                    <input type="number" step="0.1" class="form-control" id="pressure9am" name="pressure9am" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="pressure3pm">Pressure 3pm (Hectopascal - hPa)</label>
+                    <input type="number" step="0.1" class="form-control" id="pressure3pm" name="pressure3pm" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="cloud9am">Cloud 9am (eighths)</label>
+                    <input type="number" class="form-control" id="cloud9am" name="cloud9am" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="cloud3pm">Cloud 3pm (eighths)</label>
+                    <input type="number" class="form-control" id="cloud3pm" name="cloud3pm" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="temp9am">Temperature 9am (°C)</label>
+                    <input type="number" step="0.1" class="form-control" id="temp9am" name="temp9am" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="temp3pm">Temperature 3pm (°C)</label>
+                    <input type="number" step="0.1" class="form-control" id="temp3pm" name="temp3pm" required="required">
+                </div>
+            </div>
+			<div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="sunshine">Sunshine (hrs)</label>
+                    <input type="number" step="0.1" class="form-control" id="sunshine" name="sunshine" required="required">
+                </div>
+            </div>
+            <div class="col-md-6 my-2">
+                <div class="form-group">
+                    <label for="raintoday">Rain Today</label>
+                    <select class="form-control" id="raintoday" name="raintoday" required="required">
+                        <option disabled selected>Select Yes or No</option>
+						<option value= 1>Yes</option>
+                        <option value= 0>No</option>
+                    </select>
+                </div>
+            </div>
+            
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" value="submit">Predict</button>
+    </form>
+</section>
+
+</body>
+</html>
