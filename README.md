@@ -1,7 +1,5 @@
 # Rainfall-Prediction-Using-Machine-Learning
 
+https://www.credly.com/badges/66177489-bbdb-4bb3-8d0c-15284c29cd9a/public_url
 
-![image](https://github.com/code-viv/Rainfall-Prediction-Using-Machine-Learning/assets/134160743/e31e0bd0-b82a-4e49-8275-d10bcbbc23c4)
-
-![image](https://github.com/code-viv/Rainfall-Prediction-Using-Machine-Learning/assets/134160743/a73c5805-4f43-42b7-843e-eb70909807c1)
-
+https://www.credly.com/badges/db699dd3-88b7-48d9-a1cc-c5d3f2962b92/public_url
